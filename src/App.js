@@ -1,31 +1,37 @@
-import './App.css';
 import React from 'react';
-import { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom';
+import AuthPage from './AuthPage';
+import Todos from './todos/Todos';
 
 export default function App() {
-
-  const [firstName, setFirstName] = useState([]);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <main>
-          <h1 className="signUp">Sign Up</h1>
-          <form id="sign-up-form">
-            <label className='first-name'>First Name</label>
-            <input type="text" className="input" />
-            <label className='last-name'>Last Name</label>
-            <input type="text" className="input" />
-            <label className='sign-up-email'>Email</label>
-            <input type="email" className="input" />
-            <label className='sign-up-pass'>Password</label>
-            <input type="password" className="input" />
-            <button className="button">Submit</button>
-          </form>
-        </main>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/todos">Todo</Link>
+            </li>
+          </ul>
+        </nav>
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route exact path="/">
+            <AuthPage />
+          </Route>
+          
+          <Route exact path="/todos">
+            <Todos />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
-
-
