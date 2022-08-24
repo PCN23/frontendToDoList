@@ -10,9 +10,8 @@ export async function signUpUser(userData) {
   });
   const data = await resp.json();
   if (resp.ok) {
-    location.replace('/todos');
+    location.replace('./todos');
   } else {
     console.error(data.message);
   }
-    
 }
