@@ -1,12 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
-import { signUpUser } from './utils/fetch-utils';
+import { signInUser, signUpUser } from './utils/fetch-utils';
 
 export default function AuthPage() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [signInEmail, setSignInEmail] = useState('');
+  const [signInPassword, setSignInPassword] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -15,6 +17,13 @@ export default function AuthPage() {
       lastName,
       email,
       password,
+    });
+  }
+  async function handleSignInSubmit(e) {
+    e.preventDefault();
+    await signInUser({
+      email: signInEmail,
+      password: signInPassword,
     });
   }
 
@@ -57,6 +66,27 @@ export default function AuthPage() {
               className="input"
             />
             <button className="button">Submit</button>
+          </form>
+
+          <h1 className="signIn">Sign IN</h1>
+          <form onSubmit={handleSignInSubmit} id="sign-in-form">
+            <label className="sign-in-email">Email</label>
+            <input
+              value={signInEmail}
+              required
+              onChange={(e) => setSignInEmail(e.target.value)}
+              type="email"
+              className="input"
+            />
+            <label className="sign-in-pass">Password</label>
+            <input
+              value={signInPassword}
+              required
+              onChange={(e) => setSignInPassword(e.target.value)}
+              type="password"
+              className="input"
+            />
+            <button className="sign-in-button">Submit</button>
           </form>
         </main>
       </header>
