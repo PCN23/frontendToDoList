@@ -13,9 +13,7 @@ export async function signUpUser(userData) {
   const data = await resp.json();
   if (resp.ok) {
     location.replace('./todos');
-  } else {
-    console.error(data.message);
-  }
+  } 
 }
 export async function signInUser(userData) {
   const resp = await fetch(`${BASE_URL}/api/v1/users/sessions`, {
