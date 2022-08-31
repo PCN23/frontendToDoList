@@ -11,6 +11,7 @@ export async function signUpUser(userData) {
     credentials: 'include',
   });
   const data = await resp.json();
+  resp.json(data);
   if (resp.ok) {
     location.replace('./todos');
   } 
@@ -29,7 +30,7 @@ export async function signInUser(userData) {
   if (resp.ok) {
     location.replace('./todos');
   } else {
-    console.error(data.message);
+    throw new Error(data.message);
   }
 }
 
