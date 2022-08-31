@@ -11,11 +11,10 @@ export async function signUpUser(userData) {
     credentials: 'include',
   });
   const data = await resp.json();
+  resp.json(data);
   if (resp.ok) {
     location.replace('./todos');
-  } else {
-    console.error(data.message);
-  }
+  } 
 }
 export async function signInUser(userData) {
   const resp = await fetch(`${BASE_URL}/api/v1/users/sessions`, {
@@ -31,7 +30,7 @@ export async function signInUser(userData) {
   if (resp.ok) {
     location.replace('./todos');
   } else {
-    console.error(data.message);
+    throw new Error(data.message);
   }
 }
 

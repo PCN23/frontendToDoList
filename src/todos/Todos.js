@@ -1,5 +1,11 @@
 import React from 'react';
 
 export default function Todos() {
-  return <div> Here is Todos page</div>;
+  return <div>
+    <main>
+    Here is Todos page
+
+    </main>
+  </div>;
+  // make a todo form list
 }
